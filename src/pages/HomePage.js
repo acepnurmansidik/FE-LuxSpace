@@ -5,6 +5,7 @@ import Hero from "parts/Hero";
 import BrowseRoom from "parts/HomePage/BrowseRoom";
 import JustArrived from "parts/HomePage/JustArrived";
 import Sitemap from "parts/Sitemap";
+import Footer from "parts/Footer";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <JustArrived />
       <Clients />
       <Sitemap />
+      <Footer />
     </>
   );
 }
