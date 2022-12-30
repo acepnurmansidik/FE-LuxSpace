@@ -4,6 +4,8 @@ import Header from "parts/Header";
 import Breadcrumb from "../components/Breadcrumb";
 import Sitemap from "parts/Sitemap";
 import Footer from "parts/Footer";
+import ProductDetail from "parts/Details/ProductDetail";
+import Suggestion from "parts/Details/Suggestion";
 
 export default function HomePage() {
   return (
@@ -16,6 +18,8 @@ export default function HomePage() {
           { url: "/categories/87211/products/", name: "Detail" },
         ]}
       />
+      <ProductDetail />
+      <Suggestion />
       <Clients />
       <Sitemap />
       <Footer />
