@@ -7,9 +7,11 @@ import Sitemap from "parts/Sitemap";
 import Footer from "parts/Footer";
 import Hero from "parts/HomePage/Hero";
 import useScrollAnchor from "helpers/hooks/useScrollAnchor";
+import useModalDOM from "helpers/hooks/useModalDOM";
 
 export default function HomePage() {
   useScrollAnchor();
+  useModalDOM();
 
   return (
     <>
