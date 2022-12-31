@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import fetch from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
 import React, { useEffect } from "react";
 
@@ -8,21 +9,10 @@ export default function BrowseRoom() {
   });
 
   useEffect(() => {
-    run(
-      fetch(
-        "https://2141c654-73c9-4ea9-8e89-ee7c8d597b8d.mock.pstmn.io/api/categories/?page=1&limit=4"
-      ).then(async (response) => {
-        // ambil result dari response API
-        const jsonResponse = await response.json();
-        // cek jika statusnya ok make return datanya
-        if (response.ok) return jsonResponse;
-        // jika tidak ok maka return error
-        throw new Error(JSON.stringify(jsonResponse));
-      })
-    );
+    run(fetch({ url: "/api/categories/?page=1&limit=4" }));
   }, [run]);
 
-  // console.log(data, status, error);
+  console.log(data, status, error);
 
   if (isLoading) return "Loading";
 
