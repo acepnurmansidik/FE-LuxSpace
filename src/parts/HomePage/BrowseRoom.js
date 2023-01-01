@@ -4,9 +4,7 @@ import useAsync from "helpers/hooks/useAsync";
 import React, { useEffect } from "react";
 
 export default function BrowseRoom() {
-  const { data, status, error, run, isLoading } = useAsync({
-    data: { username: "" },
-  });
+  const { data, status, error, run, isLoading } = useAsync();
 
   useEffect(() => {
     run(fetch({ url: "/api/categories/?page=1&limit=4" }));
@@ -101,6 +99,10 @@ export default function BrowseRoom() {
           <div className="grid grid-rows-2 grid-cols-9 gap-4">
             {isLoading ? (
               <Loading ratio={ratioClassNames} />
+            ) : error ? (
+              JSON.stringify(error)
+            ) : data.data.length === 0 ? (
+              "No Product Found"
             ) : (
               data.data.map((item, index) => {
                 return (
