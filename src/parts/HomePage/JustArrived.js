@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/style-prop-object */
+import Carousel from "components/Carousel";
 import fetchData from "helpers/fetch";
 import useAsync from "helpers/hooks/useAsync";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function JustArrived() {
   const { data, status, error, run, isLoading } = useAsync();
+
+  const refContainer = useRef(null);
 
   useEffect(() => {
     run(fetchData({ url: "/api/products/?page=1&limit=10" }));
@@ -24,18 +27,20 @@ export default function JustArrived() {
           </div>
         </div>
         <div className="overflow-x-hidden px-4" id="carousel">
-          <div className="container mx-auto"></div>
+          <div className="container mx-auto" ref={refContainer}></div>
           <div className="overflow-hidden z-10">
             <div className="flex -mx-4 flex-row relative">
-              {isLoading
-                ? "Loading"
-                : error
-                ? JSON.stringify(error)
-                : data.data.length === 0
-                ? "No Product Found"
-                : data.data.map((item) => {
+              {isLoading ? (
+                <div className="flex -mx-4 flex-row relative">Loading</div>
+              ) : error ? (
+                JSON.stringify(error)
+              ) : data.data.length === 0 ? (
+                "No Product Found"
+              ) : (
+                <Carousel refContainer={refContainer}>
+                  {data.data.map((item) => {
                     return (
-                      <div className="px-4 relative card group">
+                      <div className="px-4 relative card group" key={item.id}>
                         <div
                           className="rounded-xl overflow-hidden card-shadow relative"
                           style={{ width: 287, height: 386 }}
@@ -79,6 +84,8 @@ export default function JustArrived() {
                       </div>
                     );
                   })}
+                </Carousel>
+              )}
             </div>
           </div>
         </div>
