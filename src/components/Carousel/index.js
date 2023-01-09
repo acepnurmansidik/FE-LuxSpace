@@ -137,7 +137,7 @@ export default function Carousel({ children, refContainer }) {
     [onDragEnd, onDragMove]
   );
 
-  // ketika di geser taidak langsung klik
+  // ketika di geser tidak langsung klik
   const onClick = useCallback((e) => {
     e = e || window.event;
     !isAllowShift.current && e.preventDefault();
@@ -148,8 +148,8 @@ export default function Carousel({ children, refContainer }) {
 
     refForwardDragHandler.onmousedown = onDragStart;
     refForwardDragHandler.addEventListener("touchstart", onDragStart);
-    refForwardDragHandler.addEventListener("touchmove", onDragEnd);
-    refForwardDragHandler.addEventListener("touchend", onDragMove);
+    refForwardDragHandler.addEventListener("touchend", onDragEnd);
+    refForwardDragHandler.addEventListener("touchmove", onDragMove);
     refForwardDragHandler.addEventListener("click", onClick);
     refForwardDragHandler.addEventListener("transitionend", fnCheckIndex);
     return () => {

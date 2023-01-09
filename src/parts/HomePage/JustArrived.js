@@ -11,6 +11,22 @@ export default function JustArrived() {
 
   const refContainer = useRef(null);
 
+  const Loading = () => {
+    return Array(6)
+      .fill()
+      .map((_, index) => {
+        return (
+          <div className="px-4 relative card group" key={index}>
+            <div
+              className="rounded-xl bg-gray-300 overflow-hidden card-shadow relative"
+              style={{ width: 287, height: 386 }}
+            ></div>
+            <div className="w-24 h-3 bg-gray-300 rounded-full mt-3"></div>
+            <div className="w-32 h-3 bg-gray-300 rounded-full mt-3"></div>
+          </div>
+        );
+      });
+  };
   useEffect(() => {
     run(fetchData({ url: "/api/products/?page=1&limit=10" }));
   }, [run]);
@@ -31,7 +47,16 @@ export default function JustArrived() {
           <div className="overflow-hidden z-10">
             <div className="flex -mx-4 flex-row relative">
               {isLoading ? (
-                <div className="flex -mx-4 flex-row relative">Loading</div>
+                <div
+                  className="flex -mx-4 flex-row relative"
+                  style={{
+                    paddingLeft:
+                      refContainer.current?.getBoundingClientRect?.()?.left -
+                        16 || 0,
+                  }}
+                >
+                  <Loading />
+                </div>
               ) : error ? (
                 JSON.stringify(error)
               ) : data.data.length === 0 ? (
