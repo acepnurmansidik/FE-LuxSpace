@@ -25,9 +25,7 @@ export default function ProductDetail() {
   };
   const [slider, setSlider] = useState(data?.imgUrls[0]);
 
-  const { state, dispatch } = useGlobalContext();
-
-  console.log(state);
+  const { dispatch } = useGlobalContext();
 
   return (
     <section className="container mx-auto">
