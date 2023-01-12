@@ -43,12 +43,13 @@ export default function Suggestion({ data }) {
           </h3>
         </div>
         <div className="flex overflow-x-auto mb-4 -mx-3">
-          {data2?.map((item) => (
-            <div className="px-3 flex-none" style={{ width: 320 }}>
-              <div
-                className="rounded-xl p-4 pb-8 relative bg-white"
-                key={item.id}
-              >
+          {data2?.map((item, index) => (
+            <div
+              className="px-3 flex-none"
+              style={{ width: 320 }}
+              key={item.id}
+            >
+              <div className="rounded-xl p-4 pb-8 relative bg-white">
                 <div className="rounded-xl overflow-hidden card-shadow w-full h-36">
                   <img
                     src={item.imageUrl}

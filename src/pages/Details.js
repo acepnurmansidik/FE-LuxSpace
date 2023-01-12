@@ -111,7 +111,11 @@ const LoaderSuggestion = () => {
           {Array(4)
             .fill()
             .map((_, index) => (
-              <div className="px-3 flex-none" style={{ width: 320 }}>
+              <div
+                className="px-3 flex-none"
+                style={{ width: 320 }}
+                key={index}
+              >
                 <div
                   className="rounded-xl p-4 pb-8 relative bg-white"
                   key={index}

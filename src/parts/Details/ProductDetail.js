@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import ReactHtmlParse from "html-react-parser";
+import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 
-export default function ProductDetail({ data }) {
-  const data2 = {
+export default function ProductDetail() {
+  let data = {
+    id: 2,
+    price: 89300000,
+    title: "Cangkir Mauttie",
+    description:
+      "<p class='text-xl leading-7 mb-6'>Tailored to a level of perfection synonymous with that of a Savile Row suit and with understated quality in the detail, Jetty has been influenced by timeless 1950s style.</p>\n<p class='text-xl leading-7 mb-6'>Providing a subtle nod to the past, Jetty also provides a perfect solution for the way we work today. A comprehensive product family, Jetty features a variety of elegant chairs and sofas.</p>",
     imgUrls: [
       "/images/content/showcase-1.front.jpg",
       "/images/content/showcase-1.back.jpg",
@@ -10,8 +16,18 @@ export default function ProductDetail({ data }) {
       "/images/content/showcase-1.side.jpg",
       "/images/content/showcase-1.top.jpg",
     ],
+    category: {
+      id: 1,
+      title: "Living Room",
+      products: 18309,
+      imageUrl: "image-catalog-1.png",
+    },
   };
-  const [slider, setSlider] = useState(data2?.imgUrls[0]);
+  const [slider, setSlider] = useState(data?.imgUrls[0]);
+
+  const { state, dispatch } = useGlobalContext();
+
+  console.log(state);
 
   return (
     <section className="container mx-auto">
@@ -35,7 +51,7 @@ export default function ProductDetail({ data }) {
         <div className="flex-1">
           <div className="slider">
             <div className="thumbnail">
-              {data2.imgUrls.map((imageItem) => (
+              {data.imgUrls.map((imageItem) => (
                 <div
                   className="px-2"
                   key={imageItem}
@@ -77,9 +93,9 @@ export default function ProductDetail({ data }) {
               : "IDR 12.000.000"}
           </p>
 
-          <a
-            href="cart.html"
+          <button
             className="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex"
+            onClick={() => dispatch({ type: "ADD_TO_CART", item: data })}
           >
             <svg
               className="fill-current mr-3"
@@ -94,7 +110,7 @@ export default function ProductDetail({ data }) {
               <path d="M25.6499 4.508C25.407 4.22245 25.0472 4.05871 24.6626 4.05871H4.82655L4.42595 2.19571C4.34232 1.80709 4.06563 1.48078 3.68565 1.32272L0.890528 0.160438C0.567841 0.0261566 0.192825 0.168008 0.0528584 0.477043C-0.0872597 0.786176 0.0608116 1.14549 0.383347 1.27957L3.17852 2.4419L6.2598 16.7708C6.38117 17.3351 6.90578 17.7446 7.50723 17.7446H22.7635C23.1152 17.7446 23.4003 17.4715 23.4003 17.1346C23.4003 16.7976 23.1152 16.5245 22.7635 16.5245H7.50728L7.13247 14.7815H22.8814C23.4828 14.7815 24.0075 14.3719 24.1288 13.8076L25.9101 5.52488C25.9876 5.16421 25.8928 4.79349 25.6499 4.508ZM22.8814 13.5615H6.87012L5.08895 5.27879L24.6626 5.27884L22.8814 13.5615Z" />
             </svg>
             Add to Cart
-          </a>
+          </button>
           <hr className="my-8" />
 
           <h6 className="text-xl font-semibold mb-4">About the product</h6>
