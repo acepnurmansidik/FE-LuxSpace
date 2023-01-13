@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ReactComponent as IconCart } from "assets/images/icon-cart.svg";
 const Header = ({ theme, posotion }) => {
-  // const [toggleMainMenu, setToggleMainMenu] = useState(false);
+  const [toggleMainMenu, setToggleMainMenu] = useState(false);
   const [isChartChanged, setIsChartChanged] = useState(false);
   const { state } = useGlobalContext();
 
@@ -24,7 +24,7 @@ const Header = ({ theme, posotion }) => {
   return (
     <>
       {/* <!-- START: HEADER --> */}
-      <header className={[posotion, "w-full z-20 px-4"].join(" ")}>
+      <header className={[posotion, "w-full z-40 px-4"].join(" ")}>
         <div className="container mx-auto py-5">
           <div className="flex flex-stretch items-center">
             <div className="w-56 items-center flex">
@@ -38,7 +38,15 @@ const Header = ({ theme, posotion }) => {
             <div className="w-full"></div>
             <div className="w-auto">
               <ul
-                className="fixed bg-white inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
+                className={[
+                  "fixed bg-white inset-0 flex flex-col items-center justify-center md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center",
+                  toggleMainMenu
+                    ? "opacity-100 z-30 visible"
+                    : "invisible opacity-0",
+                  theme === "white"
+                    ? "text-black md:text-black"
+                    : "text-black md:text-black",
+                ].join(" ")}
                 id="menu"
               >
                 <li className="mx-3 py-6 md:py-0">
@@ -99,8 +107,11 @@ const Header = ({ theme, posotion }) => {
               <ul className="items-center flex">
                 <li className="ml-6 block md:hidden">
                   <button
-                    id="menu-toggler"
-                    className="relative flex z-50 items-center justify-center w-8 h-8 text-black md:text-white focus:outline-none"
+                    onClick={() => setToggleMainMenu((prev) => !prev)}
+                    className={[
+                      "flex z-50 items-center justify-center w-8 h-8 text-black md:text-white focus:outline-none",
+                      toggleMainMenu ? "fixed top-0 right-0" : "relative",
+                    ].join(" ")}
                   >
                     <svg
                       className="fill-current"
