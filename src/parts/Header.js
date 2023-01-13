@@ -21,7 +21,6 @@ const Header = ({ theme, posotion }) => {
     }
   }, [state.cart]);
 
-  console.log(state);
   return (
     <>
       {/* <!-- START: HEADER --> */}
