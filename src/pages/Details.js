@@ -8,8 +8,10 @@ import ProductDetail from "parts/Details/ProductDetail";
 import Suggestion from "parts/Details/Suggestion";
 import useAsync from "helpers/hooks/useAsync";
 import { useParams } from "react-router-dom";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 
 export default function HomePage() {
+  useScrollToTop();
   const { idp } = useParams();
   const { data, run, isLoading } = useAsync();
 

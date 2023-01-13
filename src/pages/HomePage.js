@@ -8,10 +8,12 @@ import Footer from "parts/Footer";
 import Hero from "parts/HomePage/Hero";
 import useScrollAnchor from "helpers/hooks/useScrollAnchor";
 import useModalDOM from "helpers/hooks/useModalDOM";
+import useScrollToTop from "helpers/hooks/useScrollToTop";
 
 export default function HomePage() {
   useScrollAnchor();
   useModalDOM();
+  useScrollToTop();
 
   return (
     <>
