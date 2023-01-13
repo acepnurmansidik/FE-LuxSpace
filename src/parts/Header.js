@@ -43,9 +43,6 @@ const Header = ({ theme, posotion }) => {
                   toggleMainMenu
                     ? "opacity-100 z-30 visible"
                     : "invisible opacity-0",
-                  theme === "white"
-                    ? "text-black md:text-black"
-                    : "text-black md:text-black",
                 ].join(" ")}
                 id="menu"
               >
@@ -56,7 +53,7 @@ const Header = ({ theme, posotion }) => {
                       "hover:underline",
                       theme === "white"
                         ? "text-black md:text-white"
-                        : "text-white md:text-black",
+                        : "text-black md:text-black",
                     ].join(" ")}
                   >
                     Showcase
@@ -69,7 +66,7 @@ const Header = ({ theme, posotion }) => {
                       "hover:underline",
                       theme === "white"
                         ? "text-black md:text-white"
-                        : "text-white md:text-black",
+                        : "text-black md:text-black",
                     ].join(" ")}
                   >
                     Catalog
@@ -82,7 +79,7 @@ const Header = ({ theme, posotion }) => {
                       "hover:underline",
                       theme === "white"
                         ? "text-black md:text-white"
-                        : "text-white md:text-black",
+                        : "text-black md:text-black",
                     ].join(" ")}
                   >
                     Delivery
@@ -95,7 +92,7 @@ const Header = ({ theme, posotion }) => {
                       "hover:underline",
                       theme === "white"
                         ? "text-black md:text-white"
-                        : "text-white md:text-black",
+                        : "text-black md:text-black",
                     ].join(" ")}
                   >
                     Rewards
@@ -111,6 +108,9 @@ const Header = ({ theme, posotion }) => {
                     className={[
                       "flex z-50 items-center justify-center w-8 h-8 text-black md:text-white focus:outline-none",
                       toggleMainMenu ? "fixed top-0 right-0" : "relative",
+                      theme === "white"
+                        ? "text-black md:text-white"
+                        : "text-black md:text-black",
                     ].join(" ")}
                   >
                     <svg
@@ -132,7 +132,7 @@ const Header = ({ theme, posotion }) => {
                       "cart flex items-center justify-center w-8 h-8",
                       theme === "white"
                         ? "text-black md:text-white"
-                        : "text-white md:text-black",
+                        : "text-black md:text-black",
                       state?.cart && Object.keys(state?.cart).length > 0
                         ? "cart-filled"
                         : "",

@@ -8,10 +8,9 @@ import ProductDetail from "parts/Details/ProductDetail";
 import Suggestion from "parts/Details/Suggestion";
 import useAsync from "helpers/hooks/useAsync";
 import { useParams } from "react-router-dom";
-import useScrollToTop from "helpers/hooks/useScrollToTop";
+import DocumentWrap from "parts/DocumentWrap";
 
 export default function HomePage() {
-  useScrollToTop();
   const { idp } = useParams();
   const { data, run, isLoading } = useAsync();
 
@@ -20,7 +19,7 @@ export default function HomePage() {
   }, [idp, run]);
 
   return (
-    <>
+    <DocumentWrap>
       <Header theme={"black"} />
       <Breadcrumb
         list={[
@@ -44,7 +43,7 @@ export default function HomePage() {
       <Clients />
       <Sitemap />
       <Footer />
-    </>
+    </DocumentWrap>
   );
 }
 

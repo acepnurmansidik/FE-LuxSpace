@@ -10,5 +10,5 @@ export default function useScrollToTop() {
       left: 0,
       behavior: "smooth",
     });
-  }, [history.length]);
+  }, [history]);
 }
