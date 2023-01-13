@@ -9,10 +9,11 @@ import Suggestion from "parts/Details/Suggestion";
 import useAsync from "helpers/hooks/useAsync";
 import { useParams } from "react-router-dom";
 import DocumentWrap from "parts/DocumentWrap";
+import PageErrorMessage from "parts/PageErrorMessage";
 
 export default function HomePage() {
   const { idp } = useParams();
-  const { data, run, isLoading } = useAsync();
+  const { data, run, isLoading, isError, error } = useAsync();
 
   useEffect(() => {
     run(fetch({ url: `/api/products/${idp}` }));
@@ -28,16 +29,26 @@ export default function HomePage() {
           { url: "/categories/87211/products/", name: "Detail" },
         ]}
       />
-      {isLoading ? (
-        <LoaderProductDetails />
-      ) : (
-        <ProductDetail data={data?.detail} />
-      )}
 
-      {isLoading ? (
-        <LoaderSuggestion />
+      {isError ? (
+        <PageErrorMessage
+          title="Product Not Found"
+          body={error.errors.message}
+        />
       ) : (
-        <Suggestion data={data?.relatedProducts} />
+        <>
+          {isLoading ? (
+            <LoaderProductDetails />
+          ) : (
+            <ProductDetail data={data?.detail} />
+          )}
+
+          {isLoading ? (
+            <LoaderSuggestion />
+          ) : (
+            <Suggestion data={data?.relatedProducts} />
+          )}
+        </>
       )}
 
       <Clients />

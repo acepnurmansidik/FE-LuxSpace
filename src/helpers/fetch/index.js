@@ -10,9 +10,11 @@ export default function fetchData({
     headers: { "Content-Type": "application/json" },
     body,
   }).then(async (response) => {
+    const statusRespons = [200, 404];
     // ambil result dari response API
-    const jsonResponse =
-      response.status < 250 ? await response.json() : response;
+    const jsonResponse = statusRespons.includes(response.status)
+      ? await response.json()
+      : response;
     // cek jika statusnya ok make return datanya
     if (response.ok) return jsonResponse;
     // jika tidak ok maka return error
