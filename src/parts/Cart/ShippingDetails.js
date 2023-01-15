@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ShippingDetails() {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { state, dispatch } = useGlobalContext();
   const { data, run, isLoading } = useAsync();
   const { state: payload, fnUpdateState } = useForm({
@@ -33,7 +33,7 @@ export default function ShippingDetails() {
         }),
       });
       if (result) {
-        history.push("/congratulation");
+        navigate("/congratulation");
         dispatch({ type: "RESET_CART" });
       }
     } catch (error) {
