@@ -127,7 +127,8 @@ export default function BrowseRoom() {
                     >
                       <h5 className="text-lg font-semibold">{item.title}</h5>
                       <span className="">
-                        {item.products} item{item.products > 1 ? "s" : ""}
+                        {new Intl.NumberFormat().format(item.products)} item
+                        {item.products > 1 ? "s" : ""}
                       </span>
                     </div>
                     <a href="details.html" className="stretched-link">
